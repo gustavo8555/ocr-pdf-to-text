@@ -1,1 +1,2 @@
 pdfminer.six==20200124
+ipython==7.13.0

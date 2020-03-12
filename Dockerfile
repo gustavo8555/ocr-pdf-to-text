@@ -1,3 +1,6 @@
+FROM java:8-jdk-alpine as jrer
+RUN which java
+
 FROM python:3.8.2
 
 WORKDIR /usr/src/app

@@ -1,16 +1,16 @@
 from os import listdir
-from tabula import read_pdf 
+from tabula import read_pdf
+import pandas as pd
 
 lista_pdfs = list(filter(lambda x: x.endswith('.pdf'), listdir('notas_clear/')))
 lista_pdfs = list(map(lambda x: 'notas_clear/' + x, lista_pdfs))
 
-notas_clear = []
+initial_dataframe = read_pdf(lista_pdfs[0], output_format="dataframe", stream=True, area=(237.628,33.841,445.134,558.184))[0]
 
-for pdf in lista_pdfs:	
-	notas_clear.append(read_pdf(pdf, area=(237.628,33.841,445.134,558.184)))	
+for pdf in lista_pdfs:
+    data_arquivo = pdf.rsplit("_", -1)[-1].rsplit(".", -1)[0]
+    print(data_arquivo)
+    initial_dataframe = initial_dataframe.append(read_pdf(pdf, output_format="dataframe", stream=True, area=(237.628,33.841,445.134,558.184)), ignore_index=True)
+    initial_dataframe['data'] = data_arquivo
 
-# pdfs = convert_into_by_batch("notas_clear/", output_format="csv")
-
-
-
-
+print(initial_dataframe)

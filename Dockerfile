@@ -16,4 +16,4 @@ RUN export JAVA_HOME
 
 COPY . /usr/src/app/
 
-CMD ["python", "./script_tabula.py"]
+CMD ["python", "./script_tabula_template.py"]

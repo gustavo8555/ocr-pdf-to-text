@@ -10,7 +10,7 @@ initial_dataframe = read_pdf(lista_pdfs[0], output_format="dataframe", stream=Tr
 for pdf in lista_pdfs:
     data_arquivo = pdf.rsplit("_", -1)[-1].rsplit(".", -1)[0]
     print(data_arquivo)
-    initial_dataframe = initial_dataframe.append(read_pdf(pdf, output_format="dataframe", stream=True, area=(237.628,33.841,445.134,558.184)), ignore_index=True)
     initial_dataframe['data'] = data_arquivo
+    initial_dataframe = initial_dataframe.append(read_pdf(pdf, output_format="dataframe", stream=True, guess=True, pages=1, area=(237.628,33.841,445.134,558.184)), ignore_index=True)
 
 print(initial_dataframe)
